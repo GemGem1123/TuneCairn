@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TuneCairn</title>
+
+  <!--Google Fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="app">
+
+    <!--HEADER-->
+    <header class="header">
+      <div>
+        <p class="header__eyebrow">tunebook</p>
+        <h1 class="header__title"><em>TuneCairn</em></h1>
+      </div>
+      <div class="header__actions">
+        <!-- These buttons don't do anything yet — that's Stage 2 -->
+        <button class="icon-btn" aria-label="Settings">⚙</button>
+      </div>
+    </header>
+
+    <!--STAT STIP-->
+    <div class="stats">
+      <div class="stat">
+        <div class="stat__number">0</div>
+        <div class="stat__label">Tunes</div>
+      </div>
+      <div class="stat">
+        <div class="stat__number">0</div>
+        <div class="stat__label">Sets</div>
+      </div>
+      <div class="stat">
+        <div class="stat__number">0</div>
+        <div class="stat__label">Recordings</div>
+      </div>
+    </div>
+
+    <!--FILTER CHIPS-->
+    <div class="filters">
+      <button class="chip chip--active">All</button>
+      <button class="chip">Reels</button>
+      <button class="chip">Jigs</button>
+      <button class="chip">Slip jigs</button>
+      <button class="chip">Hornpipes</button>
+      <button class="chip">Polkas</button>
+      <button class="chip">Strathspeys</button>
+    </div>
+
+    <!--MAIN CONTETNT -->
+    <main class="main">
+
+      <div class="section-head">
+        <span class="section-head__label">Recently practised</span>
+        <a href="#" class="section-head__link">See all</a>
+      </div>
+
+      <!-- 
+           TUNE LIST
+          hardcoded example cards.
+      -->
+      <div class="tune-list">
+
+        <!-- Example tune card: Reel -->
+        <div class="tune-card">
+          <div class="tune-card__accent tune-card__accent--reel"></div>
+          <div class="tune-card__body">
+            <div class="tune-card__top">
+              <span class="tune-card__name">Sleep Soon In'da Morning</span>
+              <span class="badge badge--reel">Reel</span>
+            </div>
+            <div class="tune-card__meta">
+              <span>A minor</span>
+              <span>·</span>
+              <span>2 days ago</span>
+            </div>
+            <div class="tune-card__sets">
+              <span class="set-tag">Shetland</span>
+              <span class="set-tag">Fun</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Example tune card: Waltz -->
+        <div class="tune-card">
+          <div class="tune-card__accent tune-card__accent--waltz"></div>
+          <div class="tune-card__body">
+            <div class="tune-card__top">
+              <span class="tune-card__name">We are not yet board of the pasific</span>
+              <span class="badge badge--waltz">Waltz</span>
+            </div>
+            <div class="tune-card__meta">
+              <span>G Major</span>
+              <span>·</span>
+              <span>5 days ago</span>
+            </div>
+            <div class="tune-card__sets">
+              <span class="set-tag">Slow tune</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Example tune card: Reel-->
+        <div class="tune-card">
+          <div class="tune-card__accent tune-card__accent--reel"></div>
+          <div class="tune-card__body">
+            <div class="tune-card__top">
+              <span class="tune-card__name">Drowsy Maggie</span>
+              <span class="badge badge--reel">Reel</span>
+            </div>
+            <div class="tune-card__meta">
+              <span>E dorian</span>
+              <span>·</span>
+              <span>1 week ago</span>
+            </div>
+            <div class="tune-card__sets">
+              <span class="set-tag">Fast reels</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- end .tune-list -->
+
+      <!-- Add tune button — will open a form / search in Stage 2 -->
+      <button class="add-btn">
+        + Add a tune
+      </button>
+
+    </main>
+    <!-- end .main -->
+
+    <!--BOTTOM NAVIGATION -->
+    <nav class="bottom-nav">
+      <button class="nav-item nav-item--active" aria-label="Tunes">
+        <span class="nav-item__icon">♪</span>
+        Tunes
+      </button>
+      <button class="nav-item" aria-label="Sets">
+        <span class="nav-item__icon">☰</span>
+        Sets
+      </button>
+      <button class="nav-item" aria-label="Record">
+        <span class="nav-item__icon">⏺</span>
+        Record
+      </button>
+      <button class="nav-item" aria-label="Discover">
+        <span class="nav-item__icon">⌕</span>
+        Discover
+      </button>
+    </nav>
+
+  </div><!-- end .app -->
+
+</body>
+</html>
