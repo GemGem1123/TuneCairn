@@ -8,11 +8,12 @@ async function openDB() {
 }
 
 //save a recording 
-async function saveRecording(tuneId, audioBlob) {
+async function saveRecording(tuneId, audioBlob, name) {
     const db = await openDB();
     const recording = {
         id: String(Date.now()),
         tuneId: tuneId,
+        name: name,   
         blob: audioBlob,
         createdAt: new Date().toISOString(),
         //fill this in later
@@ -23,7 +24,7 @@ async function saveRecording(tuneId, audioBlob) {
 }
 
 //Get all the recordings for one tune 
-async function getRecordingForTune(tuneId) {
+async function getRecordingsForTune(tuneId) {
     const db = await openDB();
     const all = await db.getAll('recordings');
     return all.filter(r => r.tuneId === tuneId);

@@ -202,6 +202,43 @@
       </button>
     </nav>
 
+    <!-- TUNE DETAIL OVERLAY -->
+    <div class="overlay" id="tune-overlay">
+      <div class="tune-detail">
+
+        <div class="tune-detail__drag"></div>
+
+        <button class="tune-detail__close" id="tune-detail-close" aria-label="Close">✕</button>
+
+        <div class="tune-detail__header">
+          <h2 class="tune-detail__name" id="detail-name"></h2>
+          <div class="tune-detail__pills" id="detail-pills"></div>
+        </div>
+
+        <div class="tune-detail__divider"></div>
+
+        <!-- scrollable middle section -->
+        <div class="tune-detail__scroll" id="detail-scroll">
+
+          <div class="tune-detail__section">
+            <div class="tune-detail__section-label">Notes</div>
+            <p class="tune-detail__notes" id="detail-notes"></p>
+          </div>
+
+          <div class="tune-detail__section">
+            <div class="tune-detail__section-label">Recordings</div>
+            <div class="tune-detail__recordings" id="detail-recordings"></div>
+          </div>
+
+        </div>
+
+        <!-- floating record button -->
+        <button class="tune-detail__record-btn" id="detail-record-btn" aria-label="Record">
+          <div class="tune-detail__record-dot"></div>
+        </button>
+
+      </div>
+    </div>
   </div>
   
   <!-- Scripts -->
