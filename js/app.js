@@ -49,4 +49,27 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('tune-key').value = '';
     document.getElementById('tune-notes').value = '';
   });
+
+  //for the record buttons 
+  //Recording  uses event delegation
+    document.querySelector('.tune-list').addEventListener('click', async (e) => {
+        if (!e.target.classList.contains('record-btn')) return
+
+        const tuneId = e.target.dataset.id
+        const btn = e.target
+
+        if (btn.textContent.includes('Record')) {
+            // start recording
+            await startRecording()
+            btn.textContent = '⏹ Stop'
+            btn.style.color = 'red'
+        } else {
+            // stop and save
+            const audioBlob = await stopRecording()
+            await saveRecording(tuneId, audioBlob)
+            btn.textContent = '⏺ Record'
+            btn.style.color = ''
+            alert('Recording saved!')
+        }
+    })
 });

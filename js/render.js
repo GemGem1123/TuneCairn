@@ -9,7 +9,10 @@ function renderTuneCard(tune) {
         <span class="tune-card__name"></span>
         <span class="badge badge--${tune.type}"></span>
         </div>
-    `
+        <div class="card-actions">
+        <button class="record-btn" data-id="${tune.id}">⏺ Record</button>
+        </div>
+        `
 
     card.querySelector('.tune-card__name').textContent = tune.name
     card.querySelector('.badge').textContent = tune.type
