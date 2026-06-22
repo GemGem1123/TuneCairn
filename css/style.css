@@ -156,7 +156,7 @@ body {
 .chip:hover {
     background:var(--color-surface-alt);
 }
-.chip --active {
+.chip--active {
     background:var(--color-accent-bg);
     color:var(--color-accent);
     border-color:var(--color-accent-mid);
@@ -238,8 +238,8 @@ body {
     font-weight:400;
     letter-spacing:0.04em;
 }
-.badge --reel {background:#FAEEDA; color:#633806;}
-.badge --waltz {background:#E1F5EE; color:#085041;}
+.badge--reel {background:#FAEEDA; color:#633806;}
+.badge--waltz {background:#E1F5EE; color:#085041;}
 
 /*Key + last-played row*/
 .tune-card__meta {
@@ -328,4 +328,110 @@ BOTTOM NAVIGATION
 .nav-item__icon {
     font-size:22px;
     line-height:1;
+}
+
+/* FORM */
+.add-form {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.add-form__title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--color-text);
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 12px;
+}
+
+.form-label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.form-input {
+  font-family: var(--font-body);
+  font-size: 14px;
+  padding: 9px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  color: var(--color-text);
+  outline: none;
+  transition: border-color 0.15s;
+}
+.form-input:focus {
+  border-color: var(--color-accent-mid);
+}
+
+.form-input--textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.form-btn {
+  flex: 1;
+  padding: 11px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+}
+
+.form-btn--cancel {
+  background: var(--color-surface-alt);
+  color: var(--color-text-muted);
+}
+
+.form-btn--save {
+  background: var(--color-accent-bg);
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent-mid);
+}
+
+/* backdrop */
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;              
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 10;
+  justify-content: center;
+  align-items: flex-end;  
+  padding: 16px;
+}
+
+.overlay--visible {
+  display: flex;
+}
+
+.add-form {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  width: 100%;
+  max-width: 430px;
+  z-index: 11;
 }

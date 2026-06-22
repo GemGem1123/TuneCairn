@@ -65,6 +65,50 @@
       </div>
 
       <!-- 
+          ADD A TUNE FORM
+          the form that will add a new tune card
+      -->
+      <div class="overlay" id="overlay">
+        <div class="add-form" id="add-form">
+          <h2 class="add-form__title">Add a new tune</h2>
+
+          <div class="form-field">
+            <label class="form-label" for="tune-name">Name</label>
+            <input class="form-input" type="text" id="tune-name" placeholder="Add tune name"/>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="tune-type">Type</label>
+            <select class="form-input" id="tune-type">
+              <option value="reel">Reel</option>
+              <option value="jig">Jig</option>
+              <option value="waltz">Waltz</option>
+              <option value="strathspey">Strathspey</option>
+              <option value="hornpipe">Hornpipe</option>
+              <option value="polka">Polka</option>
+              <option value="slip jig">Slip jig</option>
+              <option value="march">March</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="tune-key">Key</label>
+            <input class="form-input" type="text" id="tune-key" placeholder="e.g. D major, E dorian" />
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="tune-notes">Notes</label>
+            <textarea class="form-input form-input--textarea" id="tune-notes" placeholder="Anything you want to note..."></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button class="form-btn form-btn--cancel" id="form-cancel">Cancel</button>
+            <button class="form-btn form-btn--save" id="form-save">Save tune</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 
            TUNE LIST
           hardcoded example cards.
       -->
@@ -137,7 +181,6 @@
       </button>
 
     </main>
-    <!-- end .main -->
 
     <!--BOTTOM NAVIGATION -->
     <nav class="bottom-nav">
@@ -165,5 +208,6 @@
    <script src="js/data.js"></script>
    <script src="js/render.js"></script>
    <script src="js/app.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/idb@7/build/umd.js"></script>
 </body>
 </html>
