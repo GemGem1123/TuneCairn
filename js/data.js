@@ -21,6 +21,16 @@ function saveTune(tune) {
     localStorage.setItem('tunes', JSON.stringify(tunes));
 }
 
+// method to update a tune
+function updateTune(updatedTune) {
+    const tunes = getAllTunes();
+    const index = tunes.findIndex(t => t.id === updatedTune.id);
+    if (index !== -1) {
+        tunes[index] = updatedTune;
+        localStorage.setItem('tunes', JSON.stringify(tunes));
+    }
+}
+
 // get all the tunes from storage 
 function getAllTunes() {
     const stored = localStorage.getItem('tunes');

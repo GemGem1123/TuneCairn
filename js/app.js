@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   await renderTuneList();
 
   const overlay = document.getElementById('overlay');
+  const tuneOverlay = document.getElementById('tune-overlay');
 
   // FILTER CHIPS
   document.querySelectorAll('.chip').forEach(chip => {
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       chip.classList.add('chip--active');
       // Filter the tune list
       currentFilter = chip.dataset.filter;
+      tuneOverlay.dataset.currentFilter = currentFilter;
       await renderTuneList(currentFilter);
     });
   });
@@ -39,7 +41,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const key = document.getElementById('tune-key').value.trim();
     const notes = document.getElementById('tune-notes').value.trim();
 
-    //Validation
+    //Validation yayss
     if (!name) {
       name = "Untitled Tune";
       return
@@ -101,6 +103,69 @@ document.addEventListener('DOMContentLoaded', async () => {
         const tunes = getAllTunes();
         const tune = tunes.find(t => t.id === tuneId);
         if (tune) openTuneDetail(tune);
+    });
+
+    //edit button
+    document.getElementById('tune-detail-edit').addEventListener('click', () => {
+        const tuneData = document.getElementById('tune-overlay').dataset.currentTune;
+        if (tuneData) {
+            const tune = JSON.parse(tuneData);
+            toggleTuneEditMode(tune);
+            
+            //Add save/cancel handlers after toggling to edit mode
+            setTimeout(() => {
+                const saveBtn = document.getElementById('edit-tune-save');
+                const cancelBtn = document.getElementById('edit-tune-cancel');
+                
+                if (saveBtn) {
+                    saveBtn.addEventListener('click', async () => {
+                        const updatedTune = {
+                            ...tune,
+                            name: document.getElementById('edit-tune-name').value.trim(),
+                            type: document.getElementById('edit-tune-type').value,
+                            key: document.getElementById('edit-tune-key').value.trim(),
+                            notes: document.getElementById('edit-tune-notes').value.trim()
+                        };
+                        
+                        // Update the tune in storage
+                        updateTune(updatedTune);
+                        
+                        // Exit edit mode and show updated info
+                        toggleTuneEditMode(updatedTune);
+                        
+                        // Update the header with new info
+                        document.getElementById('detail-name').textContent = updatedTune.name;
+                        const pillsEl = document.getElementById('detail-pills');
+                        pillsEl.innerHTML = '';
+                        
+                        const typePill = document.createElement('span');
+                        typePill.className = 'detail-pill detail-pill--type';
+                        typePill.textContent = updatedTune.type;
+                        pillsEl.appendChild(typePill);
+                        
+                        if (updatedTune.key) {
+                            const keyPill = document.createElement('span');
+                            keyPill.className = 'detail-pill';
+                            keyPill.textContent = updatedTune.key;
+                            pillsEl.appendChild(keyPill);
+                        }
+                        
+                        // Update stored tune data
+                        tuneOverlay.dataset.currentTune = JSON.stringify(updatedTune);
+                        
+                        // Re-render the main tune list to reflect changes
+                        const filter = tuneOverlay.dataset.currentFilter || 'all';
+                        await renderTuneList(filter);
+                    });
+                }
+                
+                if (cancelBtn) {
+                    cancelBtn.addEventListener('click', () => {
+                        toggleTuneEditMode(tune);
+                    });
+                }
+            });
+        }
     });
 
     // close button

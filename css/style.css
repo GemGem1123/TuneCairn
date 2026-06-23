@@ -476,10 +476,34 @@ BOTTOM NAVIGATION
   flex-shrink: 0;
 }
 
-.tune-detail__close {
+.tune-detail__actions {
   position: absolute;
   top: 12px;
   right: 14px;
+  display: flex;
+  gap: 8px;
+}
+
+.tune-detail__edit {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--color-surface-alt);
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.tune-detail__edit:hover {
+  background: var(--color-border);
+}
+
+.tune-detail__close {
   width: 26px;
   height: 26px;
   border-radius: 50%;
@@ -624,6 +648,76 @@ BOTTOM NAVIGATION
   line-height: 1;
 }
 
+/* EDIT MODE STYLES */
+.tune-detail__edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 16px;
+}
+
+.tune-detail__form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tune-detail__form-label {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+}
+
+.tune-detail__form-input {
+  padding: 8px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-text);
+  background: var(--color-surface);
+}
+
+.tune-detail__form-input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  background: var(--color-surface);
+}
+
+.tune-detail__form-textarea {
+  resize: none;
+  min-height: 80px;
+}
+
+.tune-detail__edit-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.tune-detail__edit-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+}
+
+.tune-detail__edit-btn--save {
+  background: var(--color-accent-bg);
+  color: var(--color-accent);
+}
+
+.tune-detail__edit-btn--cancel {
+  background: var(--color-surface-alt);
+  color: var(--color-text-muted);
+}
+
 /* FLOATING RECORD BUTTON */
 .tune-detail__record-btn {
   position: absolute;
@@ -649,6 +743,10 @@ BOTTOM NAVIGATION
 .tune-detail__record-btn.recording {
   background: #922B21;
   animation: pulse 1.2s infinite;
+}
+
+.tune-detail__record-btn--hidden {
+  display: none;
 }
 
 .tune-detail__record-dot {
