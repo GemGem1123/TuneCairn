@@ -1,9 +1,25 @@
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
 
-  renderTuneList();
+  // Track current filter
+  let currentFilter = 'all';
+
+  await renderTuneList();
 
   const overlay = document.getElementById('overlay');
+
+  // FILTER CHIPS
+  document.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', async () => {
+      // Remove active class from all chips
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('chip--active'));
+      // Add active class to clicked chip
+      chip.classList.add('chip--active');
+      // Filter the tune list
+      currentFilter = chip.dataset.filter;
+      await renderTuneList(currentFilter);
+    });
+  });
 
   //OPEN
   document.querySelector('.add-btn').addEventListener('click', () => {
@@ -16,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   //SAVE
-  document.getElementById('form-save').addEventListener('click', () => {
+  document.getElementById('form-save').addEventListener('click', async () => {
 
     const name = document.getElementById('tune-name').value.trim();
     const type = document.getElementById('tune-type').value;
@@ -25,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Validation
     if (!name) {
-      alert('Yer tune needs a name!')
+      name = "Untitled Tune";
       return
     }
 
@@ -41,11 +57,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     saveTune(tune);
-    renderTuneList();
+    await renderTuneList(currentFilter);
 
     //Clean stuff up
     overlay.classList.remove('overlay--visible');
     document.getElementById('tune-name').value = '';
+    document.getElementById('tune-type').value = 'reel';
     document.getElementById('tune-key').value = '';
     document.getElementById('tune-notes').value = '';
   });
@@ -67,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
             //stop and save
             const audioBlob = await stopRecording();
             await saveRecording(tuneId, audioBlob);
+            await updateRecordingCount();
             btn.textContent = '⏺ Record';
             btn.style.color = '';
             alert('Recording saved!');
@@ -113,6 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const name = prompt('Name this recording:') || 'Untitled';
 
             await saveRecording(tuneId, audioBlob, name);
+            await updateRecordingCount();
             btn.classList.remove('recording');
             btn.setAttribute('aria-label', 'Record');
 

@@ -11,6 +11,12 @@
     --color-accent-mid:#EF9F27;
     --color-reel:#854F0B;
     --color-waltz:#0F6E56;
+    --color-jig:#9D3E84;
+    --color-strathspey:#A82E3A;
+    --color-hornpipe:#C08C3C;
+    --color-polka:#E85D7B;
+    --color-slip-jig:#5B7DB3;
+    --color-march:#6B6B6B;
     --font-display:"InstrumentSerif",serif;
     --font-body:'DMSans',system-ui,sans-serif;
     --radius-sm:6px;
@@ -63,7 +69,7 @@ body {
 
 .header__title {
     font-family:var(--font-display);
-    font-size:30px;
+    font-size:35px;
     font-weight:800;
     line-height:1.1;
     color:var(--color-text);
@@ -211,6 +217,12 @@ body {
 }
 .tune-card__accent--reel {background:var(--color-reel);}
 .tune-card__accent--waltz {background:var(--color-waltz);}
+.tune-card__accent--jig {background:var(--color-jig);}
+.tune-card__accent--strathspey {background:var(--color-strathspey);}
+.tune-card__accent--hornpipe {background:var(--color-hornpipe);}
+.tune-card__accent--polka {background:var(--color-polka);}
+.tune-card__accent--slip-jig {background:var(--color-slip-jig);}
+.tune-card__accent--march {background:var(--color-march);}
 
 .tune-card__body {
     flex:1;
@@ -240,6 +252,12 @@ body {
 }
 .badge--reel {background:#FAEEDA; color:#633806;}
 .badge--waltz {background:#E1F5EE; color:#085041;}
+.badge--jig {background:#F5E6F0; color:#651C5E;}
+.badge--strathspey {background:#F5E4E6; color:#7A1A23;}
+.badge--hornpipe {background:#F8F0E2; color:#7A5819;}
+.badge--polka {background:#F8E8EE; color:#A01C3A;}
+.badge--slip-jig {background:#E8EDF5; color:#2E4677;}
+.badge--march {background:#F0F0F0; color:#3A3A3A;}
 
 /*Key + last-played row*/
 .tune-card__meta {

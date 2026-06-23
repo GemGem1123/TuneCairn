@@ -1,30 +1,62 @@
 
+function updateTuneCount() {
+    const countEl = document.getElementById('tune-count')
+    const tunes = getAllTunes()
+    countEl.textContent = tunes.length;    
+}
+
+async function updateRecordingCount() {
+    const countEl = document.getElementById('recording-count')
+    const recordings = await getAllRecordings()
+    countEl.textContent = recordings.length;    
+}
+
 // creates a tune cards and populates it with the tune data
 function renderTuneCard(tune) {
     const card = document.createElement('div')
     card.className = 'tune-card'
     card.dataset.id = tune.id
+    const tuneTypeClass = tune.type.replace(/\s+/g, '-')
     card.innerHTML = `
-        <div class="tune-card__accent tune-card__accent--${tune.type}"></div>
+        <div class="tune-card__accent tune-card__accent--${tuneTypeClass}"></div>
         <div class="tune-card__body">
-        <span class="tune-card__name"></span>
-        <span class="badge badge--${tune.type}"></span>
+          <div class="tune-card__top">
+            <span class="tune-card__name"></span>
+            <span class="badge badge--${tuneTypeClass}"></span>
+          </div>
+          <div class="tune-card__meta">
+            <span>${tune.key || ''}</span>
+            <span>·</span>
+            <span>${tune.lastPractised ? new Date(tune.lastPractised).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : ''}</span>
+          </div>
         </div>
-        `
+    `
 
     card.querySelector('.tune-card__name').textContent = tune.name
     card.querySelector('.badge').textContent = tune.type
+    card.querySelector('.tune-card__meta span:first-child').textContent = tune.key || ''
+    card.querySelector('.tune-card__meta span:last-child').textContent = tune.lastPractised ? new Date(tune.lastPractised).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : ''
 
     return card
 }
 
-function renderTuneList() {
+async function renderTuneList(filter = 'all') {
     const list = document.querySelector('.tune-list')
     // clear list 
     list.innerHTML = ''  
   
-    const tunes = getAllTunes()
+    let tunes = getAllTunes()
+    
+    // Apply filter
+    if (filter !== 'all') {
+        tunes = tunes.filter(tune => tune.type === filter)
+    }
+    
     tunes.forEach(tune => list.appendChild(renderTuneCard(tune)))
+
+    //update stats
+    updateTuneCount();
+    await updateRecordingCount();
 }
 
 function openTuneDetail(tune) {
@@ -116,6 +148,7 @@ async function renderRecordingsForTune(tuneId) {
     deleteBtn.setAttribute('aria-label', 'Delete recording')
     deleteBtn.addEventListener('click', async () => {
       await deleteRecording(rec.id)
+      await updateRecordingCount()
       renderRecordingsForTune(tuneId)
     })
 

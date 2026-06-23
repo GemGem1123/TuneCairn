@@ -29,12 +29,12 @@ function getAllTunes() {
 
 // method to delete a tune 
 function deleteTune(id) {
-    const tune = getAllTunes().filter(tunes => tune.id !== id);
-    localStorage.setItem('tunes', JSON.stringify(tune));
+    const tunes = getAllTunes().filter(tune => tune.id !== id);
+    localStorage.setItem('tunes', JSON.stringify(tunes));
 }
 
 // get tune by id 
-function deleteTune(id) {
-    const tune = getAllTune().filter(tunes => tune.id !== id);
-    return tune ? JSON.parse(tune) : [];
+function getTuneById(id) {
+    const tunes = getAllTunes();
+    return tunes.find(tune => tune.id === id);
 }

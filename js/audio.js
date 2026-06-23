@@ -30,6 +30,11 @@ async function getRecordingsForTune(tuneId) {
     return all.filter(r => r.tuneId === tuneId);
 }
 
+async function getAllRecordings() {
+    const db = await openDB();
+    return await db.getAll('recordings');
+}
+
 //Delete a recording 
 async function deleteRecording(id) {
     const db = await openDB();
